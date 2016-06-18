@@ -6,10 +6,12 @@
 # include <string.h>
 # include <limits.h>
 # include <unistd.h>
+# include <math.h>
 
-int get_estimated_price(int mileage, int theta0, int theta1);
-void get_theta(int *theta0, int *theta1);
-void get_theta_from_data(char *data, int *theta0, int *theta1);
+double get_estimated_price(int mileage, double theta0, double theta1);
+void get_theta(double *theta0, double *theta1);
+void get_theta_from_data(char *data, double *theta0, double *theta1);
 int valid_int(char *n);
+char *read_next_line(int fd);
 
 #endif
