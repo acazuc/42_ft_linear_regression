@@ -1,10 +1,14 @@
+TRAIN_NAME = ft_train
+
+ESTIMATE_NAME = ft_estimate
+
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -Ofast
 
-INCLUDES_PATH = includes/
+INCLUDES_PATH = include/
 
-SRCS_PATH = srcs/
+SRCS_PATH = src/
 
 SRCS_NAME = ft_estimate.c \
 			ft_train.c \
@@ -12,18 +16,21 @@ SRCS_NAME = ft_estimate.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
-OBJS_PATH = objs/
+OBJS_PATH = obj/
 
 OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 
-all: odir build
+all: odir $(OBJS) $(TRAIN_NAME) $(ESTIMATE_NAME)
 
-build: $(OBJS)
-	@echo " - Making $(NAME)"
-	@$(CC) $(CFLAGS) -o ft_estimate objs/ft_estimate.o objs/common.o
-	@$(CC) $(CFLAGS) -o ft_train objs/ft_train.o objs/common.o
+$(ESTIMATE_NAME):
+	@echo " - Making $@"
+	@$(CC) $(CFLAGS) -o $@ obj/ft_estimate.o obj/common.o
+
+$(TRAIN_NAME):
+	@echo " - Making $@"
+	@$(CC) $(CFLAGS) -o $@ obj/ft_train.o obj/common.o
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@echo " - Compiling $<"
