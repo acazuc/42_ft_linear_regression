@@ -26,11 +26,11 @@ all: odir $(OBJS) $(TRAIN_NAME) $(ESTIMATE_NAME)
 
 $(ESTIMATE_NAME):
 	@echo " - Making $@"
-	@$(CC) $(CFLAGS) -o $@ obj/ft_estimate.o obj/common.o
+	@$(CC) $(CFLAGS) -o $@ $(OBJS_PATH)ft_estimate.o $(OBJS_PATH)common.o
 
 $(TRAIN_NAME):
 	@echo " - Making $@"
-	@$(CC) $(CFLAGS) -o $@ obj/ft_train.o obj/common.o
+	@$(CC) $(CFLAGS) -o $@ $(OBJS_PATH)ft_train.o $(OBJS_PATH)common.o
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@echo " - Compiling $<"

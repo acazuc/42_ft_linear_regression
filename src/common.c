@@ -49,9 +49,9 @@ void get_theta(double *theta0, double *theta1)
 		printf("theta file can't be open. Please run ft_train first.\ntheta0 = theta1 = 0\n");
 		return;
 	}
-	char tmp[24];
-	memset(tmp, 0, 24);
-	if (fread(tmp, 1, 24, theta_file) == 24)
+	char tmp[50];
+	memset(tmp, 0, 50);
+	if (fread(tmp, 1, 30, theta_file) == 50)
 	{
 		printf("Invalid theta file value.\ntheta0 = theta1 = 0\n");
 		fclose(theta_file);
