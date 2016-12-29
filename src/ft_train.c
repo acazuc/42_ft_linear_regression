@@ -66,7 +66,7 @@ static void get_datas(double ***datas)
 	int fd;
 	if ((fd = open("data.csv", O_RDONLY)) == -1)
 	{
-		printf("Failed to open data.csv");
+		printf("Failed to open data.csv\n");
 		exit(EXIT_FAILURE);
 	}
 	while ((line = read_next_line(fd)))
@@ -151,7 +151,15 @@ static void print_thetas(double theta0, double theta1)
 		exit(EXIT_FAILURE);
 	}
 	if (!fprintf(file, "%f;%f", theta0, theta1))
+	{
 		printf("Failed to write to theta file\n");
+		exit(EXIT_FAILURE);
+	}
+	if (fflush(file))
+	{
+		printf("Failed to flush thetas to file\n");
+		exit(EXIT_FAILURE);
+	}
 	fclose(file);
 }
 

@@ -22,13 +22,13 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 
-all: odir $(OBJS) $(TRAIN_NAME) $(ESTIMATE_NAME)
+all: odir $(TRAIN_NAME) $(ESTIMATE_NAME)
 
-$(ESTIMATE_NAME):
+$(ESTIMATE_NAME): $(OBJS)
 	@echo " - Making $@"
 	@$(CC) $(CFLAGS) -o $@ $(OBJS_PATH)ft_estimate.o $(OBJS_PATH)common.o
 
-$(TRAIN_NAME):
+$(TRAIN_NAME): $(OBJS)
 	@echo " - Making $@"
 	@$(CC) $(CFLAGS) -o $@ $(OBJS_PATH)ft_train.o $(OBJS_PATH)common.o
 
@@ -47,6 +47,7 @@ fclean: clean
 	@echo " - Cleaning executable"
 	@rm -f ft_estimate
 	@rm -f ft_train
+	@rm -f theta
 
 re: fclean all
 
